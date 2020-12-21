@@ -8,31 +8,26 @@ function runXML() {
   
   xhr.addEventListener('load', () => {    
     if (xhr.status < 400) {
-        const dataBase = xhr.response;
-        console.log(dataBase); 
+      const dataBase = xhr.response;
+      console.log(dataBase); 
     } else {
-        console.log("HTTP error!", xhr.status)
+      console.log("HTTP error!", xhr.status);
     }
   })
 
-  xhr.addEventListener('error', (error) => {
+  xhr.addEventListener('error', error => {
     console.log('Network error, not HTTP\'s fault!', error);
   })  
 }
 
-function runAxios() {
-  axios.get(url)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-    .then(function () {
-        console.log("all done");
-    });
+async function runAxios() {
+  try {
+    const response = await axios.get(url);
+      console.log("Okay", response);
+  } catch (error) {
+    console.log("Hehe", error);
+  }
 }
 
-
-console.log(`Run with XML ${runXML()}`);
-console.log(`Run with Axios ${runAxios()}`);
+runXML();
+runAxios();
