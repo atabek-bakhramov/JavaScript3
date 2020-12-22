@@ -14,40 +14,54 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <!--Container starts: wraps all, but footer-->
     <div class="container">
-      <header class="header">
+      <!--Header starts-->
+      <header class="header common-padding">
           <label for="repositories">HYF Repositories</label>
           <select name="repositories" id="repositories">
             <option disabled selected>--Choose a repo--</option>
           </select>
       </header>
-
+      <!--Header ends-->
+      <!--Main starts-->
       <main class="main">
-        <section class="details">
-          <div>
-            <span>Repository:</span> <span id="repository-value"></span>
-          </div>
-          <div>
-            <span>Description:</span> <span id="description-value"></span>
-          </div>
-          <div>
-            <span>Forks:</span> <span id="forks-value"></span>
-          </div>
-          <div>
-            <span>Updated:</span> <span id="update-value"></span>
-          </div>
+        <!--First section starts: repository details-->
+        <section class="details common-padding">
+          <table>
+            <tr>
+              <td>Repository:</td>
+              <td id="repository-value"></td>
+            </tr>
+            <tr>
+              <td>Description:</td>
+              <td id="description-value"></td>
+            </tr>
+            <tr>
+              <td>Forks:</td>
+              <td id="forks-value"></td>
+            </tr>
+            <tr>
+              <td>Updated:</td>
+              <td id="update-value"></td>
+            </tr>
+          </table>  
         </section>
-        <section class="contributors">
+        <!--First section ends-->
+        <!--Second section starts: contributor details-->
+        <section class="contributors common-padding">
           <p>Contributors</p>
         </section>
+        <!--Second section ends-->
       </main>
+      <!--Main ends-->
     </div>
-    <footer class="footer">
+    <!--Container ends-->
+    <!--Footer starts-->
+    <footer class="footer common-padding">
       <p>HYF Repositories</p>
     </footer>
-
-
-
+    <!--Footer ends-->
     <script src="./script.js"></script>
   </body>
 </html>

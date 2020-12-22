@@ -11,6 +11,7 @@
 
 html {
   font-size: 62.5%;
+  line-height: 1.6;
 }
 
 .container {
@@ -25,22 +26,75 @@ html {
 
 label {
   color: var(--color-white);
+  font-size: 1.75rem;
+}
+
+select {
+  margin: 0 2rem;
+  padding: 0.25rem;
 }
 
 .main {
   display: flex;
+  flex-direction: row;
 }
 
 .main section {
   flex: 1;
+  margin: 0.25rem;
+  box-shadow: 0 0.125rem 0.125rem rgb(196, 196, 196);
 }
 
-.details div {
-  display: flex;
-  /* justify-content: column; */
+tr td:first-child {
+  font-weight: bold;
+}
+tr td:nth-child(2) {
+  padding: 0 0 0 2rem;
+}
+
+.contributors {
+  color: rgb(196, 196, 196);
+  align-self: flex-start;
+}
+
+.common-padding {
+  padding: 1rem;
+}
+
+.common-margin {
+  margin: 0.125rem;
 }
 
 .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 1.75rem;
   color: var(--color-white);
   background-color: var(--color-blue);
+}
+
+/* For tablets */
+@media only screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .contributors {
+    align-self: flex-end;
+    width: 80%;
+  }
+}
+
+/* For phones */
+@media only screen and (max-width: 500px) {
+  .container {
+    width: 100%;
+  }
+
+  .contributors {
+    align-self: initial;
+    width: 100%;
+  }
 }
