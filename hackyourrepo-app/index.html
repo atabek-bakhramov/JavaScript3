@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="theme-color" content="#000000" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -13,13 +10,44 @@
     <link rel="apple-touch-icon" href="./hyf.png" />
     <link rel="shortcut icon" type="image/png" href="./hyf.png" />
     <title>HackYourRepo</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"/>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <div class="container">
+      <header class="header">
+          <label for="repositories">HYF Repositories</label>
+          <select name="repositories" id="repositories">
+            <option disabled selected>--Choose a repo--</option>
+          </select>
+      </header>
+
+      <main class="main">
+        <section class="details">
+          <div>
+            <span>Repository:</span> <span id="repository-value"></span>
+          </div>
+          <div>
+            <span>Description:</span> <span id="description-value"></span>
+          </div>
+          <div>
+            <span>Forks:</span> <span id="forks-value"></span>
+          </div>
+          <div>
+            <span>Updated:</span> <span id="update-value"></span>
+          </div>
+        </section>
+        <section class="contributors">
+          <p>Contributors</p>
+        </section>
+      </main>
+    </div>
+    <footer class="footer">
+      <p>HYF Repositories</p>
+    </footer>
+
+
+
     <script src="./script.js"></script>
   </body>
 </html>

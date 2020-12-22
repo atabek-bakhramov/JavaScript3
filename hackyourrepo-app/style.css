@@ -1,3 +1,46 @@
-/* 
-  Write here your CSS rules for HackYourRepo!
-*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-blue: rgb(66, 82, 175);
+  --color-white: rgb(255, 255, 255);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  font-size: 2rem;
+}
+
+.header {
+  background-color: var(--color-blue);
+}
+
+label {
+  color: var(--color-white);
+}
+
+.main {
+  display: flex;
+}
+
+.main section {
+  flex: 1;
+}
+
+.details div {
+  display: flex;
+  /* justify-content: column; */
+}
+
+.footer {
+  color: var(--color-white);
+  background-color: var(--color-blue);
+}
