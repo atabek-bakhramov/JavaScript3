@@ -1,5 +1,5 @@
-url = 'https://xkcd.now.sh/?comic=latest';
-const imageStatistics = document.getElementById('image-statistics');
+const url = 'https://xkcd.now.sh/?comic=latest';
+const image = document.getElementById('image');
 const message = document.getElementById('message');
 
 function runXMLHttpRequest() {
@@ -11,8 +11,8 @@ function runXMLHttpRequest() {
   xhr.addEventListener('load', () => {
     if (xhr.status < 400) {
       const dataBase = xhr.response;
-      imageStatistics.src = dataBase.img;
-      message.innerText = 'Statistics up to date';
+      image.src = dataBase.img;
+      message.innerText = 'Image is shown!';
       console.log(dataBase);
     } else {
       message.innerText = `That's weird... ${xhr.status}`;
@@ -27,9 +27,8 @@ function runXMLHttpRequest() {
 async function runAxiosRequest() {
   try {
     const response = await axios.get(url);
-      // console.log(response.data);
-    imageStatistics.src = response.data.img;
-    message.innerText = 'Statistics up to date';
+    image.src = response.data.img;
+    message.innerText = 'Image is shown!';
     console.log(response);
   } catch (error) {
     message.innerText = `Oops... ${error}`;
@@ -38,4 +37,4 @@ async function runAxiosRequest() {
 
 // Call either one
 // runXMLHttpRequest();
-// runAxiosRequest();
+runAxiosRequest();
