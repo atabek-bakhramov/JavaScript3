@@ -1,13 +1,8 @@
 'use strict';
 
-// main variables
 const repositories = document.getElementById('repositories');
-const repositoryValue = document.getElementById('repository-value');
-const descriptionValue = document.getElementById('description-value');
-const forksValue = document.getElementById('forks-value');
-const updateValue = document.getElementById('update-value');
 
-const placeholderRepos = [
+let placeholderRepos = [
   {
     name: 'SampleRepo1',
     description: 'This repository is meant to be a sample',
@@ -23,47 +18,47 @@ const placeholderRepos = [
   {
     name: 'HYF-Is-The-Best',
     description:
-      'This repository contains all things HackYourFuture. That\'s because HYF is amazing!!!!',
+      "This repository contains all things HackYourFuture. That's because HYF is amazing!!!!",
     forks: 130,
     updated: '2020-05-27 12:00:00',
   },
 ];
 
-placeholderRepos
-  // sorts alphabetically the elements of the array depending on the first letter of the property name
-  .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
-  .forEach(element => {
-    // creates an option tag for each element
-    const option = document.createElement('option');
-    option.value = element.name;
-    option.innerText = element.name;
-    repositories.appendChild(option);
-})
+// sorts the array of objests based on the name property
+placeholderRepos = placeholderRepos.sort((a, b) => {
+  let x;
+  if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
+    x = 1;
+  } else if (b.name.toLocaleLowerCase() > a.name.toLocaleLowerCase()) {
+    x = -1;
+  } else {
+    x = 0;
+  }
+  return x;
+});
+
+placeholderRepos.forEach(element => {
+  // creates an option tag for each element
+  const option = document.createElement('option');
+  option.value = element.name;
+  option.innerText = element.name;
+  repositories.appendChild(option);
+});
 
 // displays the data from the array depending on the chosen option
-repositories.addEventListener('change', () => {
-  const placeholderReposFirstElement = placeholderRepos[0];
-  const placeholderReposSecondElement = placeholderRepos[1];
-  const placeholderReposThirdElement = placeholderRepos[2];
-  // eslint-disable-next-line default-case
-  switch (repositories.value) {
-    case placeholderReposFirstElement.name:
-      repositoryValue.innerText = placeholderReposFirstElement.name;
-      descriptionValue.innerText = placeholderReposFirstElement.description;
-      forksValue.innerText = placeholderReposFirstElement.forks;
-      updateValue.innerText = placeholderReposFirstElement.updated;
-      break;
-    case placeholderReposSecondElement.name:
-      repositoryValue.innerText = placeholderReposSecondElement.name;
-      descriptionValue.innerText = placeholderReposSecondElement.description;
-      forksValue.innerText = placeholderReposSecondElement.forks;
-      updateValue.innerText = placeholderReposSecondElement.updated;
-      break;
-    case placeholderReposThirdElement.name:
-      repositoryValue.innerText = placeholderReposThirdElement.name;
-      descriptionValue.innerText = placeholderReposThirdElement.description;
-      forksValue.innerText = placeholderReposThirdElement.forks;
-      updateValue.innerText = placeholderReposThirdElement.updated;
-      break;
-  }
+function selectRepo(name) {
+  const targetedRepo = placeholderRepos.find(repo => repo.name === name);
+  document.getElementById('repository-value').innerText = targetedRepo.name;
+  document.getElementById('description-value').innerText = targetedRepo.description;
+  document.getElementById('forks-value').innerText = targetedRepo.forks;
+  document.getElementById('update-value').innerText = targetedRepo.updated;
+}
+
+repositories.addEventListener('change', e => {
+  selectRepo(e.target.value);
+});
+
+// on load the page displays the info of the first object of the array
+window.addEventListener('load', () => {
+  selectRepo('AndAnotherOne');
 });
