@@ -2,15 +2,15 @@ function promiseTimeout(firstName) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (!firstName) {
-        return reject();
+        reject(new Error('Please insert the first name'));
       }
       const fullName = `${firstName} Doe`;
-      return resolve(fullName);
-    });
-  }, 5000); // not waiting for 5 secs why?
+      resolve(fullName);
+    }, 1000);
+  });
 }
 
-promiseTimeout('John')
+promiseTimeout()
   .then(result => {
     console.log(result);
   })
