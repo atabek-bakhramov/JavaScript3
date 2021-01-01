@@ -1,3 +1,152 @@
-/* 
-  Write here your CSS rules for HackYourRepo!
-*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-blue: rgb(66, 82, 175);
+  --color-white: rgb(255, 255, 255);
+  --color-gray: rgb(196, 196, 196);
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  font-size: 2rem;
+}
+
+.header {
+  background-color: var(--color-blue);
+}
+
+label {
+  color: var(--color-white);
+  font-size: 1.75rem;
+}
+
+select {
+  margin: 0 2rem;
+  padding: 0.25rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.main section {
+  flex: 1;
+  margin: 0.25rem;
+  box-shadow: 0 0.125rem 0.125rem var(--color-gray);
+}
+
+.main section:first-child {
+  align-self: flex-start;
+}
+
+.main section:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+}
+
+.main section div {
+  box-shadow: 0 0.125rem 0.125rem rgb(196, 196, 196);
+}
+
+tr {
+  vertical-align: top;
+}
+
+tr td:first-child {
+  font-weight: bold;
+}
+tr td:nth-child(2) {
+  padding: 0 0 0 2rem;
+}
+
+.contributors {
+  color: rgb(196, 196, 196);
+}
+
+.contributor-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.contributor-holder {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.contributor-holder img {
+  width: 50px;
+  flex: 1;
+}
+
+.contributor-holder a {
+  margin: 0 0 0 2rem;
+  flex: 10;
+}
+
+.counts {
+  flex: 1;
+  color: rgb(255, 255, 255);
+  background-color: var(--color-gray);
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+.common-padding {
+  padding: 1.5rem;
+}
+
+.common-margin {
+  margin: 0.125rem;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 1.75rem;
+  color: var(--color-white);
+  background-color: var(--color-blue);
+}
+
+/* For tablets */
+@media only screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .main section:first-child {
+    align-self: initial;
+  }
+
+  .contributors {
+    align-self: flex-end;
+    width: 80%;
+  }
+}
+
+/* For phones */
+@media only screen and (max-width: 500px) {
+  .container {
+    width: 100%;
+  }
+
+  .contributors {
+    align-self: initial;
+    width: 100%;
+  }
+}
