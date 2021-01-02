@@ -1,47 +1,41 @@
 'use strict';
 
 // Exercise A
-async function getData(url) {
-  let json;
+
+async function fetchData(url) {
   try {
     const response = await fetch(url);
-    json = response.json();
+    console.log(await response.json());
+  } catch (error) {
+    console.log(error.message);
   }
-  catch {
-    console.log('Error!');
-  }
-  return json;
 }
 
-getData('https://randomfox.ca/floof/').then(result => {
-  console.log(result);
-});
+fetchData('https://randomfox.ca/floof/');
 
-// // Exercise B
+// Exercise B
+
 const arrayOfWords = ['cucumber', 'tomatos', 'avocado'];
 
-async function makeAllCaps(array) {
-  let checkedWords;
-  try {
-      checkedWords = await checkWords(array);
+async function checkWords(arrayOfStrings) {
+  if (!Array.isArray(arrayOfStrings)) {
+    throw new TypeError('The passed argument has to be an array');
   }
-  catch {
-    console.log('Are you sure it is an array? 🤨');
-  }
-  return checkedWords;
-}
-
-async function checkWords(array) {
-  const capsArray = array.map(word => {
-    if (typeof word === 'string') {
-      return word.toUpperCase();
-    } else {
-      return (new Error('The word is not a string or something? 🤷🏽‍♂️'));
+  const capsArray = arrayOfStrings.map(word => {
+    if (typeof word !== 'string') {
+      throw new TypeError('All elements of the array have to be strings');
     }
+    return word.toUpperCase();
   });
   return capsArray;
-} 
+}
 
-makeAllCaps(arrayOfWords).then(result => {
-  console.log(result);
-});
+async function makeAllCaps(array) {
+  try {
+    console.log(await checkWords(array));
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+makeAllCaps(arrayOfWords);
