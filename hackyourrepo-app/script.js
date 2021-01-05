@@ -47,6 +47,10 @@ window.addEventListener('load', () => {
   const contributorsListHolder = document.createElement('div');
   contributorsSection.appendChild(contributorsListHolder);
 
+  const containerOfNumbers = document.createElement('div');
+  containerOfNumbers.className = 'pagenumbers';
+  contributorsSection.appendChild(containerOfNumbers);
+
   const footer = document.createElement('footer');
   footer.className = 'footer common-padding';
   body.appendChild(footer);
@@ -77,6 +81,9 @@ window.addEventListener('load', () => {
 
   let dataBase;
 
+  let currentPage = 1;
+  const rows = 5;
+
   const url = 'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
   const fetchData = () => {
     fetch(url)
@@ -89,27 +96,70 @@ window.addEventListener('load', () => {
 
   fetchData();
 
-  const generateContributorsList = array => {
+  const generateContributorsList = (array, wrapper, rowsPerPage, numPage) => {
     contributorsListHolder.innerText = '';
-    array.forEach(element => {
+    const page = numPage - 1;
+
+    const start = rowsPerPage * page;
+    const end = start + rowsPerPage;
+    const setOfElements = array.slice(start, end);
+
+    setOfElements.forEach(element => {
       const contributorHolder = document.createElement('div');
-      contributorHolder.className = 'contributor-holder common-padding';
-      contributorsListHolder.appendChild(contributorHolder);
+      contributorHolder.className = 'contributor-holder common-padding fade-in';
+
       const image = document.createElement('img');
       image.src = element.avatar_url;
       contributorHolder.appendChild(image);
+
       const anchor = document.createElement('a');
       anchor.href = element.html_url;
       contributorHolder.appendChild(anchor);
+
       const paragraph = document.createElement('p');
       paragraph.innerText = element.login;
       anchor.appendChild(paragraph);
+
       const countOfContributions = document.createElement('p');
       countOfContributions.innerText = element.contributions;
       countOfContributions.classList.add('counts');
       contributorHolder.appendChild(countOfContributions);
+
+      wrapper.appendChild(contributorHolder);
     });
   };
+
+  function setButtons(page, array) {
+    const button = document.createElement('button');
+    button.innerText = page;
+
+    if (currentPage === page) {
+      button.classList.add('active');
+    }
+    button.addEventListener('click', () => {
+      currentPage = page;
+      generateContributorsList(
+        array,
+        contributorsListHolder,
+        rows,
+        currentPage,
+      );
+
+      const currentButton = document.querySelector('button.active');
+      currentButton.classList.remove('active');
+      button.classList.add('active');
+    });
+    return button;
+  }
+
+  function setNumberOfPages(array, wrapper, rowsPerPage) {
+    wrapper.innerHTML = '';
+    const numberOfPages = Math.ceil(array.length / rowsPerPage);
+    for (let i = 1; i <= numberOfPages; i++) {
+      const button = setButtons(i, array);
+      wrapper.appendChild(button);
+    }
+  }
 
   const displayDetailsOfRepo = repo => {
     sectionDetails.innerHTML = `<table>
@@ -138,8 +188,14 @@ window.addEventListener('load', () => {
     displayDetailsOfRepo(dataBase[index]);
     fetch(contributor)
       .then(response => response.json())
-      .then(response => {
-        generateContributorsList(response);
+      .then(array => {
+        generateContributorsList(
+          array,
+          contributorsListHolder,
+          rows,
+          currentPage,
+        );
+        setNumberOfPages(array, containerOfNumbers, rows);
       });
   };
 

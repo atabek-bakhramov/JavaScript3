@@ -8,7 +8,6 @@ async function fetchData(url) {
     const json = await data.json();
     const array = json.results; // JSON.parse(data.replace(/&quot;/g,'"'))
     displayData(array);
-    console.log(array);
   } catch (error) {
     console.log(error.message);
   }
@@ -20,8 +19,8 @@ async function displayData(result) {
     question.classList.add('question-button');
     const answer = document.createElement('p');
     answer.classList.add('answer-box');
-    question.innerText = element.question;
-    answer.innerText = element.correct_answer;
+    question.innerHTML = element.question;
+    answer.innerHTML = element.correct_answer;
     container.appendChild(question);
     container.appendChild(answer);
     showAnswer(question);
@@ -29,6 +28,7 @@ async function displayData(result) {
 }
 
 // switch from hidden answer to displayed one and vise-versa
+// the code snippet of this function was taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
 function showAnswer(target) {
   target.addEventListener('click', () => {
     target.classList.toggle('active');
@@ -42,11 +42,3 @@ function showAnswer(target) {
 }
 
 fetchData(API);
-
-
-
-
-
-// window.addEventListener('load', function () {
-//   console.log(container);
-// })
