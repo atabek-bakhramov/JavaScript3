@@ -77,6 +77,16 @@ window.addEventListener('load', () => {
 
   let dataBase;
 
+  const showError = () => {
+    select.style.display = 'none';
+    contributorsSection.style.display = 'none';
+    sectionDetails.innerHTML = 'Network request failed';
+    const sectionStyle = sectionDetails.style;
+    sectionStyle.width = '100%';
+    sectionStyle.backgroundColor = '#C0C0C0';
+    sectionStyle.color = '#800000';
+  };
+
   const url = 'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
   const fetchData = () => {
     fetch(url)
@@ -84,6 +94,9 @@ window.addEventListener('load', () => {
       .then(response => {
         dataBase = response;
         createOptions(dataBase);
+      })
+      .catch(() => {
+        showError();
       });
   };
 
