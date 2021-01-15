@@ -1,5 +1,3 @@
-let arrayOfPokemon;
-
 const { body } = document;
 const buttonGetPokemon = document.createElement('button');
 buttonGetPokemon.innerText = 'Get Pokemon!';
@@ -13,4 +11,4 @@ const imageOfPokemon = document.createElement('img');
 imageOfPokemon.style.display = 'block';
 body.appendChild(imageOfPokemon);
 
-export { arrayOfPokemon, buttonGetPokemon, containerOfOptions, imageOfPokemon };
+export { buttonGetPokemon, containerOfOptions, imageOfPokemon };

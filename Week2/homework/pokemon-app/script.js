@@ -1,6 +1,5 @@
 import { buttonGetPokemon, containerOfOptions } from './util/createTags.js';
-import fetchData from './util/fetchData.js';
-import fetchImage from './util/fetchImage.js';
+import { fetchData, fetchImage } from './util/fetch.js';
 
 function main() {
   buttonGetPokemon.addEventListener('click', fetchData);
