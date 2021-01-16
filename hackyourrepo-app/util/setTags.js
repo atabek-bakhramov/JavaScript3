@@ -1,3 +1,5 @@
+export const mainUrl = 'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
+
 function setTags() {
   const { body } = document;
 

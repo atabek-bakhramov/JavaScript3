@@ -1,9 +1,9 @@
-const generateContributorsList = (array, wrapper, rowsPerPage, numPage) => {
+const generateContributorsList = (array, wrapper, numPage) => {
   wrapper.innerText = '';
+  const rows = 5;
   const page = numPage - 1;
-
-  const start = rowsPerPage * page;
-  const end = start + rowsPerPage;
+  const start = rows * page;
+  const end = start + rows;
   const setOfElements = array.slice(start, end);
 
   setOfElements.forEach(element => {
