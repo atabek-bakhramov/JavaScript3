@@ -1,4 +1,5 @@
-export const mainUrl = 'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
+export const mainUrl =
+  'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
 
 function setTags() {
   const { body } = document;
@@ -32,10 +33,12 @@ function setTags() {
   container.appendChild(main);
 
   const sectionDetails = document.createElement('section');
+  sectionDetails.id = 'section-details';
   sectionDetails.className = 'details common-padding';
   main.appendChild(sectionDetails);
 
   const contributorsSection = document.createElement('section');
+  contributorsSection.id = 'section-contributors';
   contributorsSection.className = 'contributors';
   main.appendChild(contributorsSection);
 
@@ -45,9 +48,11 @@ function setTags() {
   contributorsSection.appendChild(contributorsHeader);
 
   const contributorsListHolder = document.createElement('div');
+  contributorsListHolder.id = 'contributors-placeholder';
   contributorsSection.appendChild(contributorsListHolder);
 
   const containerOfNumbers = document.createElement('div');
+  containerOfNumbers.id = 'numbers-placeholder';
   containerOfNumbers.className = 'pagenumbers';
   contributorsSection.appendChild(containerOfNumbers);
 
@@ -63,8 +68,8 @@ function setTags() {
     contributorsListHolder,
     select,
     sectionDetails,
-    containerOfNumbers,
-  }
+    contributorsSection,
+  };
 }
 
 export default setTags;

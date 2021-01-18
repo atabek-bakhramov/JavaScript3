@@ -1,10 +1,10 @@
-const generateContributorsList = (array, wrapper, numPage) => {
+const generateContributorsList = (contributorsData, wrapper, numPage = 1) => {
   wrapper.innerText = '';
   const rows = 5;
   const page = numPage - 1;
   const start = rows * page;
   const end = start + rows;
-  const setOfElements = array.slice(start, end);
+  const setOfElements = contributorsData.slice(start, end);
 
   setOfElements.forEach(element => {
     const contributorHolder = document.createElement('div');
