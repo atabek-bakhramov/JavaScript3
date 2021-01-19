@@ -3,7 +3,7 @@ class Creature {
   constructor(firstName, age, preferences) {
     this.firstName = firstName;
     this.age = age;
-    this.prefernces = preferences;
+    this.preferences = preferences;
   }
 
   liveHappyLife() {
@@ -12,7 +12,15 @@ class Creature {
 }
 
 class Human extends Creature {
-  constructor(firstName, age, city, relationshipStatus, numberOfChildren, job, preferences) {
+  constructor(
+    firstName,
+    age,
+    city,
+    relationshipStatus,
+    numberOfChildren,
+    job,
+    preferences,
+  ) {
     super(firstName, age, preferences);
     this.city = city;
     this.relationshipStatus = relationshipStatus;
@@ -30,5 +38,20 @@ class DomesticAnimal extends Creature {
   }
 }
 
-const Abdulkareem = new Human('Abdulkareem', 35, 'Riyadh', 'married', 3, 'a construction worker', 'eating dates and smoking water pipe');
-const Adel = new DomesticAnimal('Adel', 'horse', 15, 'brown', 'helps with transporting materials', 'eating grass');
+const Abdulkareem = new Human(
+  'Abdulkareem',
+  35,
+  'Riyadh',
+  'married',
+  3,
+  'a construction worker',
+  'eating dates and smoking water pipe',
+);
+const Adel = new DomesticAnimal(
+  'Adel',
+  'horse',
+  15,
+  'brown',
+  'helps with transporting materials',
+  'eating grass',
+);
